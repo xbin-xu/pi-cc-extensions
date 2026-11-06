@@ -48,5 +48,5 @@ export function sessionEntryTokens(entry: unknown): number {
 /** 芯片文案：`∑ 402k`；没有数据返回空串（不占位置）。 */
 export function formatSessionTokenTotal(total: number): string {
 	if (!Number.isFinite(total) || total <= 0) return "";
-	return `∑ ${formatTokenCount(Math.round(total))}`;
+	return `↑↓ ${formatTokenCount(Math.round(total))}`;
 }
