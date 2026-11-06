@@ -32,6 +32,7 @@ Run `/reload` after installation.
 | Fullscreen mode             | Tool card/group expand and collapse on click, previews, hover highlight, and a back-to-bottom button                                         | `TUIMODE=fullscreen` or `--tui-mode fullscreen` |
 | Settings panel              | `Style / Features / UI / Diff / Thinking / Footer` tabs                                                                                      | `/ccstyle`                                      |
 | Context inspection          | Usage breakdown and previews for the system prompt, memory, skills, tools definition, and messages                                           | `/context`                                      |
+| Transcript viewer           | Claude Code-style fullscreen review: incremental search, prompt jumps, compact/all toggle, export to $EDITOR                                  | `/transcript` or `transcriptOpenKey`            |
 | Session/Subagent references | Search and inject effective context from previous Sessions or existing SubAgents                                                             | `@`                                             |
 | Status bar                  | Shows model, context, cache, cost, the conversation token total, and git; also works with `@narumitw/pi-usage` for live quota. Git/cache Nerd Font icons can be turned off | `/ccstyle`                                      |
 | Theme                       | Bundled themes: CC Dark, CC Light, CC Dark HC, CC Light HC                                                                                   | `/settings` → Theme                             |
@@ -52,6 +53,8 @@ Renderer snapshots for `on` / `compact` modes: [default](./docs/tool-render-exam
   "enableSessionReference": true,          // @ session references
   "enableSubagentAutocomplete": true,      // @subagent:[name] completion and delegation hints
   "enableContextCommand": true,            // /context usage check
+  "enableTranscript": true,               // /transcript fullscreen review (search/jump/export)
+  "transcriptOpenKey": null,              // transcript shortcut; null = command only. ctrl+o conflicts with app.tools.expand — remap first
   "enableAgentSummary": true,              // per-turn tool summary
   "enableWorkingMessage": true,            // Working... bottom token/elapsed
   "enableAliases": true,                   // /clear, /exit aliases

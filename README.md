@@ -32,6 +32,7 @@ pi install git:github.com/minuque/pi-cc-extensions
 | Fullscreen mode       | 工具卡/group 单击展开与收起、预览、hover 高亮、回到底部按钮                 | `TUIMODE=fullscreen` 或 `--tui-mode fullscreen` |
 | 配置面板              | `Style / Features / UI / Diff / Thinking / Footer` 六页签                       | `/ccstyle`                                      |
 | 上下文检查            | 查看上下文占用，并预览 System prompt、Memory、Skills、Tools definition 和消息内容 | `/context`                                      |
+| Transcript viewer      | Claude Code 风格全屏回看：增量搜索、prompt 跳转、compact/all 切换、导出到 $EDITOR | `/transcript` 或 `transcriptOpenKey`            |
 | Session/Subagent 引用 | 搜索并注入历史 Session 或现有 SubAgent 的有效上下文                             | `@`                                             |
 | 状态栏                | 显示：模型、上下文、缓存、费用、本次对话累计 token、git并适配 @narumitw/pi-usage 实时显示额度；git/缓存图标可关 Nerd Font | `/ccstyle`                              |
 | 主题                  | 随包提供 4 个主题：CC Dark、CC Light、CC Dark HC、CC Light HC                   | `/settings` → Theme                             |
@@ -52,6 +53,8 @@ pi install git:github.com/minuque/pi-cc-extensions
   "enableSessionReference": true,          // @ session 引用
   "enableSubagentAutocomplete": true,      // @subagent:[name] 补全与委派提示
   "enableContextCommand": true,            // /context 上下文检查
+  "enableTranscript": true,               // /transcript 全屏回看（搜索/跳转/导出）
+  "transcriptOpenKey": null,              // transcript 快捷键；null 仅命令。ctrl+o 与 app.tools.expand 冲突，需先改键后设置
   "enableAgentSummary": true,              // 每回合工具摘要
   "enableWorkingMessage": true,            // Working... 底部 token/耗时
   "enableAliases": true,                   // /clear、/exit 别名

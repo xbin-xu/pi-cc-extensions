@@ -73,6 +73,10 @@ export type Config = {
 	enableSessionReference: boolean;
 	enableSubagentAutocomplete: boolean;
 	enableContextCommand: boolean;
+	/** transcript viewer：`/transcript` 全屏回看当前分支（搜索/跳转/导出）。 */
+	enableTranscript: boolean;
+	/** transcript viewer 打开快捷键；null = 仅命令。默认不占用 ctrl+o（app.tools.expand）。 */
+	transcriptOpenKey: string | null;
 	enableAgentSummary: boolean;
 	enableWorkingMessage: boolean;
 	enableAliases: boolean;
@@ -164,6 +168,8 @@ export const DEFAULT_CONFIG: Config = {
 	enableSessionReference: true,
 	enableSubagentAutocomplete: true,
 	enableContextCommand: true,
+	enableTranscript: true,
+	transcriptOpenKey: null,
 	enableAgentSummary: true,
 	enableWorkingMessage: true,
 	enableAliases: true,
@@ -222,6 +228,13 @@ function normalizeFooterCurrencyRate(value: unknown): number | null {
 	if (value === undefined || value === null || value === "") return null;
 	const n = typeof value === "number" ? value : typeof value === "string" ? Number(value) : NaN;
 	return Number.isFinite(n) && n > 0 ? n : null;
+}
+
+/** transcript 打开快捷键：小写化 + 去空白；空串/null/非字符串 = 不绑定。 */
+function normalizeTranscriptOpenKey(value: unknown): string | null {
+	if (typeof value !== "string") return null;
+	const key = value.trim().toLowerCase();
+	return key.length > 0 ? key : null;
 }
 
 export function normalizeConfig(input: unknown): Config {
@@ -307,6 +320,8 @@ export function normalizeConfig(input: unknown): Config {
 		enableSessionReference: source.enableSessionReference !== false,
 		enableSubagentAutocomplete: source.enableSubagentAutocomplete !== false,
 		enableContextCommand: source.enableContextCommand !== false,
+		enableTranscript: source.enableTranscript !== false,
+		transcriptOpenKey: normalizeTranscriptOpenKey(source.transcriptOpenKey),
 		enableAgentSummary: source.enableAgentSummary !== false,
 		enableWorkingMessage: source.enableWorkingMessage !== false,
 		enableAliases: source.enableAliases !== false,

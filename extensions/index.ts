@@ -14,6 +14,7 @@ import agentAutocomplete from "./feature/reference/subagent.ts";
 import agentSummary from "./feature/agent-summary/index.ts";
 import context from "./feature/context.ts";
 import sessionReference from "./feature/reference/index.ts";
+import transcript from "./feature/transcript/index.ts";
 import { installCompactThinking } from "./feature/compact-thinking.ts";
 
 // renderer
@@ -41,6 +42,7 @@ export default function (pi: ExtensionAPI): void {
 
 	// features
 	if (config.enableContextCommand) context(pi);
+	if (config.enableTranscript) transcript(pi);
 	if (config.enableSessionReference) sessionReference(pi);
 	if (config.enableSubagentAutocomplete) agentAutocomplete(pi);
 	if (config.enableAgentSummary) agentSummary(pi);
